@@ -24,6 +24,9 @@ if __name__ == "__main__":
         for path in glob.iglob(pattern):
             cfg["files"].append(path)
 
+    if len(cfg["files"]) <= 1:
+        fatal("Not enough files to merge.")
+
     wr = PdfWriter()
     for path in cfg["files"]:
         wr.addpages(PdfReader(path).pages)
